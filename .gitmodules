@@ -1,0 +1,3 @@
+[submodule "Presto/vendor/spdlog"]
+	path = Presto/vendor/spdlog
+	url = https://github.com/gabime/spdlog
