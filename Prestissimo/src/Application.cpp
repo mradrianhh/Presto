@@ -1,6 +1,20 @@
-#include <stdio.h>
+#include <Presto.h>
 
-int main()
+class Application : public Presto::Application
 {
-	printf("Hello world");
+public:
+	Application()
+	{
+
+	}
+
+	~Application()
+	{
+
+	}
+};
+
+Presto::Application* Presto::CreateApplication()
+{
+	return new Application();
 }
