@@ -6,7 +6,7 @@ namespace Presto
 
 	Application::Application()
 	{
-
+		m_Window = std::unique_ptr<IWindow>(IWindow::Create());
 	}
 
 	Application::~Application()
@@ -16,7 +16,10 @@ namespace Presto
 
 	void Application::Run()
 	{
-		while (true);
+		while (m_Running)
+		{
+			m_Window->OnUpdate();
+		}
 	}
 
 }
