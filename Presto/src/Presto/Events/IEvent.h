@@ -1,6 +1,8 @@
 #pragma once
 
-#include "../Core.h"
+#include <string>
+
+#include "Presto/Core/Core.h"
 
 namespace Presto
 {
@@ -29,10 +31,10 @@ namespace Presto
 
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
-	class Event
+	class IEvent
 	{
 	public:
-		virtual ~Event() = default;
+		virtual ~IEvent() = default;
 		
 		bool Handled = false;
 
@@ -50,7 +52,7 @@ namespace Presto
 	class EventDispatcher
 	{
 	public:
-		EventDispatcher(Event& event) : m_Event(event) {};
+		EventDispatcher(IEvent& event) : m_Event(event) {};
 
 		template<typename T, typename F>
 		bool Dispatch(const F& func)
@@ -63,7 +65,7 @@ namespace Presto
 			return false;
 		}
 	private:
-		Event& m_Event;
+		IEvent& m_Event;
 	};
 
 }

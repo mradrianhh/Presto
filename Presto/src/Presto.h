@@ -1,4 +1,4 @@
 #pragma once
 
-#include "Presto/Application.h"
-#include "Presto/EntryPoint.h"
+#include "Presto/Core/Application.h"
+#include "Presto/Core/EntryPoint.h"

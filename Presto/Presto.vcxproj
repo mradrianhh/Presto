@@ -147,18 +147,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Presto.h" />
-    <ClInclude Include="src\Presto\Application.h" />
-    <ClInclude Include="src\Presto\Core.h" />
-    <ClInclude Include="src\Presto\EntryPoint.h" />
+    <ClInclude Include="src\Presto\Core\Application.h" />
+    <ClInclude Include="src\Presto\Core\Core.h" />
+    <ClInclude Include="src\Presto\Core\EntryPoint.h" />
     <ClInclude Include="src\Presto\Events\ApplicationEvent.h" />
-    <ClInclude Include="src\Presto\Events\Event.h" />
+    <ClInclude Include="src\Presto\Events\IEvent.h" />
     <ClInclude Include="src\prestopch.h" />
+    <ClInclude Include="src\Presto\Core\IWindow.h" />
+    <ClInclude Include="src\Platform\Windows\Window.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Presto\Application.cpp" />
     <ClCompile Include="src\prestopch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\Presto\Core\Application.cpp" />
+    <ClCompile Include="src\Platform\Windows\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">

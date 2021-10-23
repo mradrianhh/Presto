@@ -10,27 +10,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Presto.h" />
-    <ClInclude Include="src\Presto\Application.h">
-      <Filter>Presto</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Presto\Core.h">
-      <Filter>Presto</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Presto\EntryPoint.h">
-      <Filter>Presto</Filter>
-    </ClInclude>
     <ClInclude Include="src\Presto\Events\ApplicationEvent.h">
       <Filter>Presto\Events</Filter>
     </ClInclude>
-    <ClInclude Include="src\Presto\Events\Event.h">
+    <ClInclude Include="src\Presto\Events\IEvent.h">
       <Filter>Presto\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\prestopch.h" />
+    <ClInclude Include="src\Presto\Core\Application.h" />
+    <ClInclude Include="src\Presto\Core\Core.h" />
+    <ClInclude Include="src\Presto\Core\EntryPoint.h" />
+    <ClInclude Include="src\Presto\Core\IWindow.h" />
+    <ClInclude Include="src\Platform\Windows\Window.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Presto\Application.cpp">
-      <Filter>Presto</Filter>
-    </ClCompile>
     <ClCompile Include="src\prestopch.cpp" />
+    <ClCompile Include="src\Presto\Core\Application.cpp" />
+    <ClCompile Include="src\Platform\Windows\Window.cpp" />
   </ItemGroup>
 </Project>
