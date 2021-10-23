@@ -1,3 +1,6 @@
 [submodule "Presto/vendor/spdlog"]
 	path = Presto/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "Presto/vendor/GLFW"]
+	path = Presto/vendor/GLFW
+	url = https://github.com/TheCherno/glfw.git
