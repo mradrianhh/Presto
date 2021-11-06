@@ -4,11 +4,35 @@
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Platform\Windows">
-      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Presto">
       <UniqueIdentifier>{62FBC3CA-4E9D-EEA0-3758-02F5239975F1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Presto\Components">
+      <UniqueIdentifier>{37BFC761-A3D5-C5F7-EC4C-511958A2967F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Presto\Components\Actuators">
+      <UniqueIdentifier>{7CFE1701-E80B-46E7-71F2-41D2DDFE119E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Presto\Components\Containers">
+      <UniqueIdentifier>{5C31B5CA-48EC-A476-F1A3-1DC1DD3DEF06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Presto\Components\Controllers">
+      <UniqueIdentifier>{1DC8D74B-89E0-BE75-528D-4E0FBE64530F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Presto\Components\Electronics">
+      <UniqueIdentifier>{01C8DD22-6DE0-C44C-368D-54E6A26459E6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Presto\Components\Electronics\Communication">
+      <UniqueIdentifier>{A62DA375-1293-36FC-9B6B-D8D407D02B6B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Presto\Components\Electronics\Communication\Signals">
+      <UniqueIdentifier>{26BEDC22-92CF-84C9-1B21-170987310E03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Presto\Components\Electronics\Components">
+      <UniqueIdentifier>{760AD12D-6287-C470-8B04-C58477E06004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Presto\Components\Sensors">
+      <UniqueIdentifier>{F353AB60-5F16-DFEA-A8C6-6D7714C8B7C8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Presto\Core">
       <UniqueIdentifier>{FA8C8B63-6642-0459-EF36-FE2F5BEBFA5C}</UniqueIdentifier>
@@ -18,10 +42,49 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Platform\Windows\Window.h">
-      <Filter>Platform\Windows</Filter>
+    <ClInclude Include="src\Platform\WindowsWindow.h">
+      <Filter>Platform</Filter>
     </ClInclude>
     <ClInclude Include="src\Presto.h" />
+    <ClInclude Include="src\Presto\Components\Actuators\Actuator.h">
+      <Filter>Presto\Components\Actuators</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Presto\Components\Actuators\Valve.h">
+      <Filter>Presto\Components\Actuators</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Presto\Components\Containers\Container.h">
+      <Filter>Presto\Components\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Presto\Components\Controllers\Controller.h">
+      <Filter>Presto\Components\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Presto\Components\Controllers\PID.h">
+      <Filter>Presto\Components\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Presto\Components\Electronics\Communication\Channel.h">
+      <Filter>Presto\Components\Electronics\Communication</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Presto\Components\Electronics\Communication\Signals\ISignal.h">
+      <Filter>Presto\Components\Electronics\Communication\Signals</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Presto\Components\Electronics\Communication\Signals\TTSignal.h">
+      <Filter>Presto\Components\Electronics\Communication\Signals</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Presto\Components\Electronics\Components\Receiver.h">
+      <Filter>Presto\Components\Electronics\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Presto\Components\Electronics\Components\Transmitter.h">
+      <Filter>Presto\Components\Electronics\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Presto\Components\IComponent.h">
+      <Filter>Presto\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Presto\Components\Sensors\Sensor.h">
+      <Filter>Presto\Components\Sensors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Presto\Components\Sensors\TemperatureSensor.h">
+      <Filter>Presto\Components\Sensors</Filter>
+    </ClInclude>
     <ClInclude Include="src\Presto\Core\Application.h">
       <Filter>Presto\Core</Filter>
     </ClInclude>
@@ -31,7 +94,19 @@
     <ClInclude Include="src\Presto\Core\EntryPoint.h">
       <Filter>Presto\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Presto\Core\IWindow.h">
+    <ClInclude Include="src\Presto\Core\KeyCodes.h">
+      <Filter>Presto\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Presto\Core\Layer.h">
+      <Filter>Presto\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Presto\Core\LayerStack.h">
+      <Filter>Presto\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Presto\Core\MouseCodes.h">
+      <Filter>Presto\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Presto\Core\Window.h">
       <Filter>Presto\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Presto\Events\ApplicationEvent.h">
@@ -40,13 +115,43 @@
     <ClInclude Include="src\Presto\Events\IEvent.h">
       <Filter>Presto\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Presto\Events\KeyEvent.h">
+      <Filter>Presto\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Presto\Events\MouseEvent.h">
+      <Filter>Presto\Events</Filter>
+    </ClInclude>
     <ClInclude Include="src\prestopch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Platform\Windows\Window.cpp">
-      <Filter>Platform\Windows</Filter>
+    <ClCompile Include="src\Platform\WindowsWindow.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Presto\Components\Actuators\Valve.cpp">
+      <Filter>Presto\Components\Actuators</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Presto\Components\Controllers\PID.cpp">
+      <Filter>Presto\Components\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Presto\Components\Electronics\Communication\Channel.cpp">
+      <Filter>Presto\Components\Electronics\Communication</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Presto\Components\Electronics\Components\Receiver.cpp">
+      <Filter>Presto\Components\Electronics\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Presto\Components\Electronics\Components\Transmitter.cpp">
+      <Filter>Presto\Components\Electronics\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Presto\Components\Sensors\TemperatureSensor.cpp">
+      <Filter>Presto\Components\Sensors</Filter>
     </ClCompile>
     <ClCompile Include="src\Presto\Core\Application.cpp">
+      <Filter>Presto\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Presto\Core\Layer.cpp">
+      <Filter>Presto\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Presto\Core\LayerStack.cpp">
       <Filter>Presto\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\prestopch.cpp" />

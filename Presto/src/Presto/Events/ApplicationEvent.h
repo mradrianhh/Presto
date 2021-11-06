@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Event.h"
+#include "IEvent.h"
 
 namespace Presto
 {
 
-	class WindowResizeEvent : public Event
+	class WindowResizeEvent : public IEvent
 	{
 	public:
 		WindowResizeEvent(unsigned int width, unsigned int height) : m_Width(width), m_Height(height) {};
@@ -19,7 +19,7 @@ namespace Presto
 		unsigned int m_Width, m_Height;
 	};
 
-	class WindowCloseEvent : public Event
+	class WindowCloseEvent : public IEvent
 	{
 	public:
 		WindowCloseEvent() = default;

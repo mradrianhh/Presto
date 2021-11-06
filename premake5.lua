@@ -13,13 +13,15 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["GLFW"] = "Presto/vendor/GLFW/include"
+IncludeDir["GLAD"] = "Presto/vendor/GLAD/include"
 
 include "Presto/vendor/GLFW"
+include "Presto/vendor/GLAD"
+
 
 project "Presto"
     location "Presto"
     kind "SharedLib"
-    staticruntime "On"
     language "C++"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
@@ -42,12 +44,14 @@ project "Presto"
     includedirs
     {
         "%{prj.name}/src",
-        "%{IncludeDir.GLFW}"
+        "%{IncludeDir.GLFW}",
+        "%{IncludeDir.GLAD}"
     }
 
     links
     {
         "GLFW",
+        "GLAD",
         "opengl32.lib"
     }
 
@@ -57,7 +61,8 @@ project "Presto"
         defines
         {
             "PRESTO_PLATFORM_WINDOWS",
-            "PRESTO_BUILD_DLL"
+            "PRESTO_BUILD_DLL",
+            "GLFW_INCLUDE_NONE"
         }
 
         postbuildcommands
@@ -67,10 +72,12 @@ project "Presto"
 
     filter "configurations:Debug"
         defines "PRESTO_DEBUG"
+        buildoptions "/MTd"
         symbols "On"
 
     filter "configurations:Release"
         defines "PRESTO_RELEASE"
+        buildoptions "/MT"
         optimize "On"
 
     filter "configurations:Dist"
