@@ -4,6 +4,12 @@
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Platform\OpenGL">
+      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Presto">
       <UniqueIdentifier>{62FBC3CA-4E9D-EEA0-3758-02F5239975F1}</UniqueIdentifier>
     </Filter>
@@ -40,10 +46,16 @@
     <Filter Include="Presto\Events">
       <UniqueIdentifier>{06C5C479-7285-40B0-3BC0-892DA73F858C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Presto\ImGui">
+      <UniqueIdentifier>{0CF267D5-F854-F779-A1DA-2F308D1CC3FC}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Platform\WindowsWindow.h">
-      <Filter>Platform</Filter>
+    <ClInclude Include="src\Platform\OpenGL\ImGuiImplOpengl3.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Presto.h" />
     <ClInclude Include="src\Presto\Components\Actuators\Actuator.h">
@@ -121,11 +133,19 @@
     <ClInclude Include="src\Presto\Events\MouseEvent.h">
       <Filter>Presto\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Presto\ImGui\ImGuiLayer.h">
+      <Filter>Presto\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="src\prestopch.h" />
+    <ClInclude Include="src\Presto\Core\Input.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Platform\WindowsWindow.cpp">
-      <Filter>Platform</Filter>
+    <ClCompile Include="src\Platform\OpenGL\ImGuiImplOpengl3.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Presto\Components\Actuators\Valve.cpp">
       <Filter>Presto\Components\Actuators</Filter>
@@ -154,6 +174,10 @@
     <ClCompile Include="src\Presto\Core\LayerStack.cpp">
       <Filter>Presto\Core</Filter>
     </ClCompile>
+    <ClCompile Include="src\Presto\ImGui\ImGuiLayer.cpp">
+      <Filter>Presto\ImGui</Filter>
+    </ClCompile>
     <ClCompile Include="src\prestopch.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
   </ItemGroup>
 </Project>

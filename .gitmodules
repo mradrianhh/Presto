@@ -1,3 +1,6 @@
 [submodule "Presto/vendor/GLFW"]
 	path = Presto/vendor/GLFW
 	url = https://github.com/TheCherno/glfw.git
+[submodule "Presto/vendor/imgui"]
+	path = Presto/vendor/imgui
+	url = https://github.com/TheCherno/imgui.git
