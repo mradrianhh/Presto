@@ -51,12 +51,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Platform\OpenGL\ImGuiImplOpengl3.h">
-      <Filter>Platform\OpenGL</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
-      <Filter>Platform\Windows</Filter>
-    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
@@ -142,18 +136,9 @@
     <ClInclude Include="src\Presto\Events\MouseEvent.h">
       <Filter>Presto\Events</Filter>
     </ClInclude>
-    <ClInclude Include="src\Presto\ImGui\ImGuiLayer.h">
-      <Filter>Presto\ImGui</Filter>
-    </ClInclude>
     <ClInclude Include="src\prestopch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Platform\OpenGL\ImGuiImplOpengl3.cpp">
-      <Filter>Platform\OpenGL</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
-      <Filter>Platform\Windows</Filter>
-    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
@@ -186,9 +171,6 @@
     </ClCompile>
     <ClCompile Include="src\Presto\Core\LayerStack.cpp">
       <Filter>Presto\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Presto\ImGui\ImGuiLayer.cpp">
-      <Filter>Presto\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\prestopch.cpp" />
   </ItemGroup>

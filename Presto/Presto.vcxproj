@@ -145,8 +145,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Platform\OpenGL\ImGuiImplOpengl3.h" />
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Presto.h" />
     <ClInclude Include="src\Presto\Components\Actuators\Actuator.h" />
@@ -176,12 +174,9 @@
     <ClInclude Include="src\Presto\Events\IEvent.h" />
     <ClInclude Include="src\Presto\Events\KeyEvent.h" />
     <ClInclude Include="src\Presto\Events\MouseEvent.h" />
-    <ClInclude Include="src\Presto\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\prestopch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Platform\OpenGL\ImGuiImplOpengl3.cpp" />
-    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\Presto\Components\Actuators\Valve.cpp" />
     <ClCompile Include="src\Presto\Components\ComponentFactory.cpp" />
@@ -193,7 +188,6 @@
     <ClCompile Include="src\Presto\Core\Application.cpp" />
     <ClCompile Include="src\Presto\Core\Layer.cpp" />
     <ClCompile Include="src\Presto\Core\LayerStack.cpp" />
-    <ClCompile Include="src\Presto\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\prestopch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
