@@ -51,6 +51,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\ImGuiImplOpengl3.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
@@ -60,6 +66,9 @@
     </ClInclude>
     <ClInclude Include="src\Presto\Components\Actuators\Valve.h">
       <Filter>Presto\Components\Actuators</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Presto\Components\ComponentFactory.h">
+      <Filter>Presto\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\Presto\Components\Containers\Container.h">
       <Filter>Presto\Components\Containers</Filter>
@@ -133,15 +142,26 @@
     <ClInclude Include="src\Presto\Events\MouseEvent.h">
       <Filter>Presto\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Presto\ImGui\ImGuiLayer.h">
+      <Filter>Presto\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="src\prestopch.h" />
-    <ClInclude Include="src\Presto\Components\ComponentFactory.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\ImGuiImplOpengl3.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Presto\Components\Actuators\Valve.cpp">
       <Filter>Presto\Components\Actuators</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Presto\Components\ComponentFactory.cpp">
+      <Filter>Presto\Components</Filter>
     </ClCompile>
     <ClCompile Include="src\Presto\Components\Controllers\PID.cpp">
       <Filter>Presto\Components\Controllers</Filter>
@@ -167,7 +187,9 @@
     <ClCompile Include="src\Presto\Core\LayerStack.cpp">
       <Filter>Presto\Core</Filter>
     </ClCompile>
+    <ClCompile Include="src\Presto\ImGui\ImGuiLayer.cpp">
+      <Filter>Presto\ImGui</Filter>
+    </ClCompile>
     <ClCompile Include="src\prestopch.cpp" />
-    <ClCompile Include="src\Presto\Components\ComponentFactory.cpp" />
   </ItemGroup>
 </Project>
