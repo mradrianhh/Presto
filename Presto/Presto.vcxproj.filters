@@ -51,9 +51,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Platform\OpenGL\ImGuiImplOpengl3.h">
-      <Filter>Platform\OpenGL</Filter>
-    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
@@ -106,6 +103,9 @@
     <ClInclude Include="src\Presto\Core\EntryPoint.h">
       <Filter>Presto\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Presto\Core\Input.h">
+      <Filter>Presto\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\Presto\Core\KeyCodes.h">
       <Filter>Presto\Core</Filter>
     </ClInclude>
@@ -133,17 +133,10 @@
     <ClInclude Include="src\Presto\Events\MouseEvent.h">
       <Filter>Presto\Events</Filter>
     </ClInclude>
-    <ClInclude Include="src\Presto\ImGui\ImGuiLayer.h">
-      <Filter>Presto\ImGui</Filter>
-    </ClInclude>
     <ClInclude Include="src\prestopch.h" />
-    <ClInclude Include="src\Presto\Core\Input.h" />
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\Presto\Components\ComponentFactory.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Platform\OpenGL\ImGuiImplOpengl3.cpp">
-      <Filter>Platform\OpenGL</Filter>
-    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
@@ -174,10 +167,7 @@
     <ClCompile Include="src\Presto\Core\LayerStack.cpp">
       <Filter>Presto\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\Presto\ImGui\ImGuiLayer.cpp">
-      <Filter>Presto\ImGui</Filter>
-    </ClCompile>
     <ClCompile Include="src\prestopch.cpp" />
-    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
+    <ClCompile Include="src\Presto\Components\ComponentFactory.cpp" />
   </ItemGroup>
 </Project>

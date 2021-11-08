@@ -7,15 +7,6 @@
 namespace Presto
 {
 
-	enum class ControllerType
-	{
-		PID,
-		ECU
-	};
-
-#define CONTROLLER_CLASS_TYPE(type) static ControllerType GetStaticControllerType() { return type; }\
-								virtual ControllerType GetControllerType() const override { return GetStaticControllerType(); }\
-
 	class Controller : public IComponent
 	{
 	public:
@@ -25,9 +16,6 @@ namespace Presto
 		// OnUpdate(): Process all signals
 		virtual void Process() = 0;
 
-		virtual ControllerType GetControllerType() const = 0;
-
-		COMPONENT_CLASS_TYPE(ComponentType::CONTROLLER)
 	};
 
 }

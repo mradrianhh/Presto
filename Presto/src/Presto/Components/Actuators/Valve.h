@@ -7,7 +7,7 @@ namespace Presto
 	class Valve : public Actuator
 	{
 	public:
-		Valve(std::string identifier, float FlowRate) : Actuator(identifier), m_Position(0), m_FlowRate(FlowRate)
+		Valve(std::string identifier) : Actuator(identifier), m_Position(0), m_FlowRate(0)
 		{ }
 
 		virtual ~Valve() = default;
@@ -32,7 +32,7 @@ namespace Presto
 			m_FlowRate = FlowRate;
 		}
 
-		ACTUATOR_CLASS_TYPE(ActuatorType::VALVE)
+		COMPONENT_CLASS_TYPE(ComponentType::VALVE)
 	private:
 		float m_Position;
 		float m_FlowRate;

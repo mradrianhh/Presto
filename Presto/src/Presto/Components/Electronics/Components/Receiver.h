@@ -1,6 +1,9 @@
 #pragma once
 
+#include "Presto/Components/IComponent.h"
 #include "Presto/Components/Electronics/Communication/Channel.h"
+
+#include <string>
 
 namespace Presto
 {

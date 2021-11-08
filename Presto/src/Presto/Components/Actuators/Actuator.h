@@ -9,22 +9,12 @@
 namespace Presto
 {
 
-	enum class ActuatorType
-	{
-		VALVE
-	};
-
-#define ACTUATOR_CLASS_TYPE(type) static ActuatorType GetStaticActuatorType() { return type; }\
-								virtual ActuatorType GetActuatorType() const override { return GetStaticActuatorType(); }\
-
 	class Actuator : public IComponent
 	{
 	public:
 		Actuator(std::string identifier) : IComponent(identifier) {}
 
 		virtual ~Actuator() = default;
-
-		virtual ActuatorType GetActuatorType() const = 0;
 
 		virtual void Activate() = 0;
 
@@ -33,7 +23,6 @@ namespace Presto
 			m_Transmitter.SetChannel(channel);
 		}
 
-		COMPONENT_CLASS_TYPE(ComponentType::ACTUATOR)
 	protected:
 		Transmitter m_Transmitter;
 		Receiver m_Receiver;

@@ -9,23 +9,12 @@
 namespace Presto
 {
 
-	enum class SensorType
-	{
-		TEMPERATURE_SENSOR,
-		PRESSURE_SENSOR
-	};
-
-#define SENSOR_CLASS_TYPE(type) static SensorType GetStaticSensorType() { return type; }\
-								virtual SensorType GetSensorType() const override { return GetStaticSensorType(); }\
-
 	class Sensor : public IComponent
 	{
 	public:
 		Sensor(std::string identifier) : IComponent(identifier) {}
 
 		virtual ~Sensor() = default;
-
-		virtual SensorType GetSensorType() const = 0;
 
 		// Start two threads in paralell
 		// Thread 1: Read sensor-reading, update m_Signal
@@ -37,7 +26,6 @@ namespace Presto
 			m_Transmitter.SetChannel(channel);
 		};
 
-		COMPONENT_CLASS_TYPE(ComponentType::SENSOR)
 	protected:
 		Transmitter m_Transmitter;
 	};

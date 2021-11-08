@@ -15,6 +15,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Presto/vendor/GLFW/include"
 IncludeDir["GLAD"] = "Presto/vendor/GLAD/include"
 IncludeDir["ImGui"] = "Presto/vendor/imgui"
+IncludeDir["glm"] = "Presto/vendor/glm"
 
 
 include "Presto/vendor/GLFW"
@@ -48,7 +49,8 @@ project "Presto"
         "%{prj.name}/src",
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.GLAD}",
-        "%{IncludeDir.ImGui}"
+        "%{IncludeDir.ImGui}",
+        "%{IncludeDir.glm}"
     }
 
     links
@@ -105,6 +107,7 @@ project "Prestissimo"
     includedirs
     {
         "Presto/src",
+        "%{IncludeDir.glm}"
     }
 
     links

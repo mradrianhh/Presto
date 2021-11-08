@@ -108,7 +108,7 @@ namespace Presto
 		void ConnectActuator(Actuator* actuator, int OUT_PIN);
 		void ConnectActuator(Actuator* actuator);
 
-		CONTROLLER_CLASS_TYPE(ControllerType::PID)
+		COMPONENT_CLASS_TYPE(ComponentType::PID)
 
 	private:
 		std::map<int, Input*> m_Inputs;

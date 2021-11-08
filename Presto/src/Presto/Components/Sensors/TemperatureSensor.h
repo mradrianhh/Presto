@@ -19,7 +19,7 @@ namespace Presto
 
 		void Activate();
 
-		SENSOR_CLASS_TYPE(SensorType::TEMPERATURE_SENSOR)
+		COMPONENT_CLASS_TYPE(ComponentType::TEMPERATURE_SENSOR)
 	private:
 		TTSignal* m_Signal;
 		float* m_Reading;

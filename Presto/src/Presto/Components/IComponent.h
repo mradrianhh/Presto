@@ -7,16 +7,13 @@ namespace Presto
 
 	enum class ComponentType
 	{
-		ACTUATOR,
-		SENSOR,
-		CONTAINER,
-		CONTROLLER,
-		TRANSMITTER,
-		RECEIVER
+		VALVE,
+		PID,
+		TEMPERATURE_SENSOR
 	};
 
-#define COMPONENT_CLASS_TYPE(type) static ComponentType GetStaticComponentType() {return type; }\
-								virtual ComponentType GetComponentType() const override { return GetStaticComponentType(); }\
+#define COMPONENT_CLASS_TYPE(type) static ComponentType GetStaticType() {return type; }\
+								virtual ComponentType GetComponentType() const override { return GetStaticType(); }\
 								virtual const char* GetName() const override { return #type; }
 
 	class IComponent

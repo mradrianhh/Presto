@@ -1,9 +1,11 @@
 #include "prestopch.h"
 #include "Application.h"
+
 #include "Presto/Core/Window.h"
 #include "Presto/Components/Controllers/PID.h"
 #include "Presto/Components/Sensors/TemperatureSensor.h"
 #include "Presto/Components/Actuators/Valve.h"
+#include "Presto/Components/ComponentFactory.h"
 
 #include <iostream>
 
@@ -15,6 +17,10 @@ namespace Presto
 	{
 		m_Window = std::unique_ptr<Window>(Window::Create(WindowProps()));
 		m_Window->SetEventCallback(BIND_EVENT_FN(Application::OnEvent, this));
+
+		ComponentFactory::Instance()->AddPrototype<Valve>();
+		IComponent* valve = ComponentFactory::Instance()->CreateComponent<Valve>("V_01");
+		std::cout << valve->GetIdentifier() << std::endl;
 	}
 
 	Application::~Application()
