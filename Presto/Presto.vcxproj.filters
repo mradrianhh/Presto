@@ -145,9 +145,6 @@
     <ClCompile Include="src\Presto\Components\Actuators\Valve.cpp">
       <Filter>Presto\Components\Actuators</Filter>
     </ClCompile>
-    <ClCompile Include="src\Presto\Components\ComponentFactory.cpp">
-      <Filter>Presto\Components</Filter>
-    </ClCompile>
     <ClCompile Include="src\Presto\Components\Controllers\PID.cpp">
       <Filter>Presto\Components\Controllers</Filter>
     </ClCompile>

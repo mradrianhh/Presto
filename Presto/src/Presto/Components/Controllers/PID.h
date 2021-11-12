@@ -8,6 +8,11 @@
 
 #include <map>
 #include <string>
+#include <functional>
+
+/*
+	Implement regulation-loops using builder-pattern.
+*/
 
 namespace Presto
 {
@@ -96,9 +101,6 @@ namespace Presto
 	{
 	public:
 		PID(std::string identifier) : Controller(identifier) {}
-		~PID() = default;
-
-		virtual void Process();
 
 		void ConfigureIOLayout(int numInput, int numOutput);
 
@@ -108,6 +110,13 @@ namespace Presto
 		void ConnectActuator(Actuator* actuator, int OUT_PIN);
 		void ConnectActuator(Actuator* actuator);
 
+		void Regulate();
+
+		inline void SetSetRegulation(std::function<void()> SetRegulation)
+		{
+			m_SetRegulation = SetRegulation;
+		}
+
 		COMPONENT_CLASS_TYPE(ComponentType::PID)
 
 	private:
@@ -115,6 +124,7 @@ namespace Presto
 		std::map<int, Output*> m_Outputs;
 		std::map<std::string, std::pair<ChannelType, int>> m_PIN_MAP;
 
+		std::function<void()> m_SetRegulation;
 
 		void AddInput(IComponent* component = nullptr);
 		void AddOutput(IComponent* component = nullptr);

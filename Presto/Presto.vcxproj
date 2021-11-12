@@ -179,7 +179,6 @@
   <ItemGroup>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\Presto\Components\Actuators\Valve.cpp" />
-    <ClCompile Include="src\Presto\Components\ComponentFactory.cpp" />
     <ClCompile Include="src\Presto\Components\Controllers\PID.cpp" />
     <ClCompile Include="src\Presto\Components\Electronics\Communication\Channel.cpp" />
     <ClCompile Include="src\Presto\Components\Electronics\Components\Receiver.cpp" />

@@ -3,10 +3,6 @@
 
 namespace Presto
 {
-	void PID::Process()
-	{
-		// Process all signals.
-	}
 	void PID::ConfigureIOLayout(int numInput, int numOutput)
 	{
 		while (m_Inputs.size() != numInput) 
@@ -56,6 +52,11 @@ namespace Presto
 				m_PIN_MAP[actuator->GetIdentifier()] = std::make_pair(ChannelType::OUTPUT, pair.first);
 				actuator->Activate();
 			}
+	}
+
+	void PID::Regulate()
+	{
+
 	}
 
 	void PID::AddInput(IComponent* component)
