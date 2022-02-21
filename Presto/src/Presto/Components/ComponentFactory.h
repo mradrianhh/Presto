@@ -24,6 +24,8 @@ namespace Presto
 		{
 			if (m_Prototype[T::GetStaticType()])
 				return m_Prototype[T::GetStaticType()](identifier);
+			else
+				return nullptr;
 		}
 
 		inline static ComponentFactory* Instance()

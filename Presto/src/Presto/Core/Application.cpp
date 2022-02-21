@@ -9,14 +9,20 @@
 
 #include <iostream>
 
-
 namespace Presto
 {
 
+	Application* Application::s_Instance = nullptr;
+
 	Application::Application()
 	{
+		s_Instance = this;
+
 		m_Window = std::unique_ptr<Window>(Window::Create(WindowProps()));
 		m_Window->SetEventCallback(BIND_EVENT_FN(Application::OnEvent, this));
+
+		m_ImGuiLayer = new ImGuiLayer();
+		PushOverlay(m_ImGuiLayer);
 
 		ComponentFactory::Instance()->AddPrototype<Valve>();
 		IComponent* valve = ComponentFactory::Instance()->CreateComponent<Valve>("V_01");
@@ -46,11 +52,13 @@ namespace Presto
 	void Application::PushLayer(Layer* layer)
 	{
 		m_LayerStack.PushLayer(layer);
+		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* overlay)
 	{
 		m_LayerStack.PushOverlay(overlay);
+		overlay->OnAttach();
 	}
 
 	void Application::Run()
@@ -59,6 +67,14 @@ namespace Presto
 		{
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
+
+			m_ImGuiLayer->Begin();
+			{
+				for (Layer* layer : m_LayerStack)
+					layer->OnImGuiRender();
+			}
+			m_ImGuiLayer->End();
+
 			m_Window->OnUpdate();
 		}
 	}

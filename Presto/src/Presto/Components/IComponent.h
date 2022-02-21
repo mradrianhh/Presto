@@ -23,13 +23,14 @@ namespace Presto
 		virtual ~IComponent() = default;
 
 		virtual ComponentType GetComponentType() const = 0;
-		virtual const char* GetName() const = 0;
+		virtual const char* GetName() const { return m_Name.c_str(); }
 
 		inline std::string GetIdentifier()
 		{
 			return m_Identifier;
 		}
 	private:
+		std::string m_Name;
 		std::string m_Identifier;
 	};
 

@@ -1,5 +1,5 @@
 workspace "Presto"
-    architecture "x64"
+    architecture "x86_64"
     startproject "Prestissimo"
 
     configurations
@@ -24,8 +24,10 @@ include "Presto/vendor/imgui"
 
 project "Presto"
     location "Presto"
-    kind "SharedLib"
+    kind "StaticLib"
     language "C++"
+    cppdialect "C++17"
+    staticruntime "off"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -35,7 +37,8 @@ project "Presto"
 
     defines
     {
-        "_CRT_SECURE_NO_WARNINGS"
+        "_CRT_SECURE_NO_WARNINGS",
+        "GLFW_INCLUDE_NONE"
     }
 
     files
@@ -56,7 +59,7 @@ project "Presto"
     links
     {
         "GLFW",
-        "GLAD",
+        "Glad",
         "imgui",
         "opengl32.lib"
     }
@@ -67,8 +70,6 @@ project "Presto"
         defines
         {
             "PRESTO_PLATFORM_WINDOWS",
-            "PRESTO_BUILD_DLL",
-            "GLFW_INCLUDE_NONE"
         }
 
         postbuildcommands
@@ -78,22 +79,25 @@ project "Presto"
 
     filter "configurations:Debug"
         defines "PRESTO_DEBUG"
-        buildoptions "/MTd"
         symbols "On"
+        runtime "Debug"
 
     filter "configurations:Release"
         defines "PRESTO_RELEASE"
-        buildoptions "/MT"
         optimize "On"
+        runtime "Release"
 
     filter "configurations:Dist"
         defines "PRESTO_DIST"
         optimize "On"
+        runtime "Release"
 
 project "Prestissimo"
     location "Prestissimo"
     kind "ConsoleApp"
     language "C++"
+    cppdialect "C++17"
+    staticruntime "off"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -106,7 +110,8 @@ project "Prestissimo"
 
     includedirs
     {
-        "Presto/src",
+        "%{wks.location}/Presto/src",
+        "%{wks.location}/Presto/vendor",
         "%{IncludeDir.glm}"
     }
 
@@ -116,8 +121,6 @@ project "Prestissimo"
     }
 
     filter "system:windows"
-        cppdialect "C++17"
-        staticruntime "On"
         systemversion "latest"
 
         defines
@@ -127,12 +130,15 @@ project "Prestissimo"
 
     filter "configurations:Debug"
         defines "PRESTO_DEBUG"
-        symbols "On"
+        symbols "on"
+        runtime "Debug"
 
     filter "configurations:Release"
         defines "PRESTO_RELEASE"
-        optimize "On"
+        optimize "on"
+        runtime "Release"
 
     filter "configurations:Dist"
         defines "PRESTO_DIST"
         optimize "On"
+        runtime "Release"

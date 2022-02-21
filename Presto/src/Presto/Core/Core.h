@@ -1,10 +1,14 @@
 #pragma once
 
 #ifdef PRESTO_PLATFORM_WINDOWS
+#ifdef PRESTO_DLL
 #ifdef PRESTO_BUILD_DLL
 #define PRESTO_API __declspec(dllexport)
 #else
 #define PRESTO_API __declspec(dllimport)
+#endif
+#else
+#define PRESTO_API
 #endif
 #endif
 
