@@ -1,6 +1,5 @@
 #include <Presto.h>
 #include <Presto/Core/EntryPoint.h>
-#include "DemoLayer.h"
 
 namespace Presto
 {
@@ -10,7 +9,6 @@ namespace Presto
 	public:
 		PrestissimoApplication()
 		{
-			PushLayer(new DemoLayer());
 		}
 
 		~PrestissimoApplication()

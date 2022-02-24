@@ -7,12 +7,15 @@
 #include "Presto/Core/LayerStack.h"
 #include "Presto/ImGui/ImGuiLayer.h"
 
+#include "Presto/Renderer/Shader.h"
+#include "Presto/Renderer/Buffer.h"
+
 #include <memory>
 
 namespace Presto
 {
 
-	class PRESTO_API Application
+	class Application
 	{
 
 	public:
@@ -38,6 +41,11 @@ namespace Presto
 		ImGuiLayer* m_ImGuiLayer;
 		LayerStack m_LayerStack;
 
+		unsigned int m_VertexArray;
+		std::unique_ptr<Shader> m_Shader;
+		std::unique_ptr<VertexBuffer> m_VertexBuffer;
+		std::unique_ptr<IndexBuffer> m_IndexBuffer;
+	private:
 		static Application* s_Instance;
 	};
 

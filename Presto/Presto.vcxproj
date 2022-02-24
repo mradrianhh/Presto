@@ -77,7 +77,7 @@
       <PrecompiledHeaderFile>prestopch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;GLFW_INCLUDE_NONE;PRESTO_PLATFORM_WINDOWS;PRESTO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;vendor\glm;vendor\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -100,7 +100,7 @@
       <PrecompiledHeaderFile>prestopch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;GLFW_INCLUDE_NONE;PRESTO_PLATFORM_WINDOWS;PRESTO_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;vendor\glm;vendor\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -127,7 +127,7 @@
       <PrecompiledHeaderFile>prestopch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;GLFW_INCLUDE_NONE;PRESTO_PLATFORM_WINDOWS;PRESTO_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;vendor\glm;vendor\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -149,6 +149,11 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
+    <ClInclude Include="src\Presto\Renderer\Buffer.h" />
+    <ClInclude Include="src\Presto\Renderer\Shader.h" />
+    <ClInclude Include="src\Presto\Renderer\Renderer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Presto.h" />
@@ -173,6 +178,7 @@
     <ClInclude Include="src\Presto\Core\KeyCodes.h" />
     <ClInclude Include="src\Presto\Core\Layer.h" />
     <ClInclude Include="src\Presto\Core\LayerStack.h" />
+    <ClInclude Include="src\Presto\Core\Log.h" />
     <ClInclude Include="src\Presto\Core\MouseCodes.h" />
     <ClInclude Include="src\Presto\Core\Window.h" />
     <ClInclude Include="src\Presto\Events\ApplicationEvent.h" />
@@ -180,9 +186,15 @@
     <ClInclude Include="src\Presto\Events\KeyEvent.h" />
     <ClInclude Include="src\Presto\Events\MouseEvent.h" />
     <ClInclude Include="src\Presto\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\Presto\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\prestopch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\Presto\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Presto\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Presto\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\Presto\Components\Actuators\Valve.cpp" />
@@ -194,6 +206,7 @@
     <ClCompile Include="src\Presto\Core\Application.cpp" />
     <ClCompile Include="src\Presto\Core\Layer.cpp" />
     <ClCompile Include="src\Presto\Core\LayerStack.cpp" />
+    <ClCompile Include="src\Presto\Core\Log.cpp" />
     <ClCompile Include="src\Presto\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Presto\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\prestopch.cpp">

@@ -5,6 +5,8 @@
 #include "Presto/Events/KeyEvent.h"
 #include "Presto/Events/MouseEvent.h"
 
+#include "Platform/OpenGL/OpenGLContext.h"
+
 #include <glad/glad.h>
 #include "imgui.h"
 #include "backends/imgui_impl_glfw.h"
@@ -44,8 +46,10 @@ namespace Presto
 		}
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
-		gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 	

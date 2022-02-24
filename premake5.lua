@@ -53,7 +53,8 @@ project "Presto"
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.GLAD}",
         "%{IncludeDir.ImGui}",
-        "%{IncludeDir.glm}"
+        "%{IncludeDir.glm}",
+        "%{prj.name}/vendor/spdlog/include"
     }
 
     links
@@ -61,7 +62,8 @@ project "Presto"
         "GLFW",
         "Glad",
         "imgui",
-        "opengl32.lib"
+        "opengl32.lib",
+
     }
 
     filter "system:windows"
@@ -112,7 +114,8 @@ project "Prestissimo"
     {
         "%{wks.location}/Presto/src",
         "%{wks.location}/Presto/vendor",
-        "%{IncludeDir.glm}"
+        "%{IncludeDir.glm}",
+        "%{wks.location}/Presto/vendor/spdlog/include"
     }
 
     links

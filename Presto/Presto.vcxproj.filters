@@ -4,6 +4,9 @@
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Platform\OpenGL">
+      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platform\Windows">
       <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
     </Filter>
@@ -46,8 +49,14 @@
     <Filter Include="Presto\ImGui">
       <UniqueIdentifier>{0CF267D5-F854-F779-A1DA-2F308D1CC3FC}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Presto\Renderer">
+      <UniqueIdentifier>{482D05F5-B4B8-72B9-BDC9-F5AD29D4CEB9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
@@ -118,6 +127,9 @@
     <ClInclude Include="src\Presto\Core\LayerStack.h">
       <Filter>Presto\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Presto\Core\Log.h">
+      <Filter>Presto\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\Presto\Core\MouseCodes.h">
       <Filter>Presto\Core</Filter>
     </ClInclude>
@@ -139,9 +151,19 @@
     <ClInclude Include="src\Presto\ImGui\ImGuiLayer.h">
       <Filter>Presto\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="src\Presto\Renderer\GraphicsContext.h">
+      <Filter>Presto\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\prestopch.h" />
+    <ClInclude Include="src\Presto\Renderer\Renderer.h" />
+    <ClInclude Include="src\Presto\Renderer\Shader.h" />
+    <ClInclude Include="src\Presto\Renderer\Buffer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
@@ -175,6 +197,9 @@
     <ClCompile Include="src\Presto\Core\LayerStack.cpp">
       <Filter>Presto\Core</Filter>
     </ClCompile>
+    <ClCompile Include="src\Presto\Core\Log.cpp">
+      <Filter>Presto\Core</Filter>
+    </ClCompile>
     <ClCompile Include="src\Presto\ImGui\ImGuiBuild.cpp">
       <Filter>Presto\ImGui</Filter>
     </ClCompile>
@@ -182,5 +207,9 @@
       <Filter>Presto\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\prestopch.cpp" />
+    <ClCompile Include="src\Presto\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Presto\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Presto\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
   </ItemGroup>
 </Project>
