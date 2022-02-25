@@ -149,6 +149,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Presto\Renderer\Buffer.h" />
     <ClInclude Include="src\Presto\Renderer\Shader.h" />
@@ -188,8 +189,10 @@
     <ClInclude Include="src\Presto\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Presto\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\prestopch.h" />
+    <ClInclude Include="src\Presto\Renderer\VertexArray.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Presto\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Presto\Renderer\Shader.cpp" />
@@ -212,6 +215,7 @@
     <ClCompile Include="src\prestopch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\Presto\Renderer\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">
