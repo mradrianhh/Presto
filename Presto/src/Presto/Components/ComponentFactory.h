@@ -9,7 +9,7 @@
 namespace Presto
 {
 
-	class PRESTO_API ComponentFactory
+	class ComponentFactory
 	{
 	public:
 		template<typename T>
