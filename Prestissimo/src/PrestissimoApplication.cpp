@@ -2,6 +2,7 @@
 #include <Presto/Core/EntryPoint.h>
 
 #include "imgui/imgui.h"
+#include <glm/gtc/matrix_transform.hpp>
 
 namespace Presto
 {
@@ -10,7 +11,7 @@ namespace Presto
 	{
 	public:
 		ExampleLayer()
-			: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f)
+			: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f), m_Triangle1Position(0.0f), m_Triangle2Position(0.0f)
 		{
 			m_VertexArray.reset(VertexArray::Create());
 
@@ -41,13 +42,14 @@ namespace Presto
 			layout(location = 0) in vec3 a_Position;
 
 			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
 
 			out vec3 v_Position;
 
 			void main()
 			{
 				v_Position = a_Position;
-				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);	
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
 			}
 		)";
 
@@ -55,7 +57,9 @@ namespace Presto
 			#version 330 core
 			
 			layout(location = 0) out vec4 color;
+
 			in vec3 v_Position;
+
 			void main()
 			{
 				color = vec4(v_Position * 0.5 + 0.5, 1.0);
@@ -70,19 +74,23 @@ namespace Presto
 			PRESTO_TRACE("{0} s, ({1} ms)", ts.GetSeconds(), ts.GetMilliseconds());
 
 			if (Presto::Input::IsKeyPressed(PRESTO_KEY_LEFT))
-				m_CameraPosition.x += m_CameraMoveSpeed * ts;
+				m_Triangle1Position.x -= m_CameraMoveSpeed * ts;
 			else if (Presto::Input::IsKeyPressed(PRESTO_KEY_RIGHT))
-				m_CameraPosition.x -= m_CameraMoveSpeed * ts;
+				m_Triangle1Position.x += m_CameraMoveSpeed * ts;
 
 			if (Presto::Input::IsKeyPressed(PRESTO_KEY_UP))
-				m_CameraPosition.y -= m_CameraMoveSpeed * ts;
+				m_Triangle1Position.y += m_CameraMoveSpeed * ts;
 			else if (Presto::Input::IsKeyPressed(PRESTO_KEY_DOWN))
-				m_CameraPosition.y += m_CameraMoveSpeed * ts;
+				m_Triangle1Position.y -= m_CameraMoveSpeed * ts;
 
 			if (Presto::Input::IsKeyPressed(PRESTO_KEY_A))
-				m_CameraRotation += m_CameraRotationSpeed * ts;
-			if (Presto::Input::IsKeyPressed(PRESTO_KEY_D))
-				m_CameraRotation -= m_CameraRotationSpeed * ts;
+				m_Triangle2Position.x -= m_CameraMoveSpeed * ts;
+			else if (Presto::Input::IsKeyPressed(PRESTO_KEY_D))
+				m_Triangle2Position.x += m_CameraMoveSpeed * ts;
+			if (Presto::Input::IsKeyPressed(PRESTO_KEY_W))
+				m_Triangle2Position.y += m_CameraMoveSpeed * ts;
+			else if (Presto::Input::IsKeyPressed(PRESTO_KEY_S))
+				m_Triangle2Position.y -= m_CameraMoveSpeed * ts;
 
 			Presto::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 			Presto::RenderCommand::Clear();
@@ -92,7 +100,12 @@ namespace Presto
 
 			Presto::Renderer::BeginScene(m_Camera);
 
-			Presto::Renderer::Submit(m_Shader, m_VertexArray);
+			glm::mat4 transform1 = glm::translate(glm::mat4(1.0f), m_Triangle1Position);
+			glm::mat4 transform2 = glm::translate(glm::mat4(1.0f), m_Triangle2Position);
+
+			Presto::Renderer::Submit(m_Shader, m_VertexArray, transform1);
+
+			Presto::Renderer::Submit(m_Shader, m_VertexArray, transform2);
 
 			Presto::Renderer::EndScene();
 		}
@@ -123,10 +136,13 @@ namespace Presto
 
 		Presto::OrthographicCamera m_Camera;
 		glm::vec3 m_CameraPosition;
-		float m_CameraMoveSpeed = 0.1f;
+		float m_CameraMoveSpeed = 10.0f;
 
 		float m_CameraRotation = 0.0f;
 		float m_CameraRotationSpeed = 180.0f;
+
+		glm::vec3 m_Triangle1Position;
+		glm::vec3 m_Triangle2Position;
 	};
 
 	class PrestissimoApplication : public Application
