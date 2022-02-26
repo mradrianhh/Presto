@@ -6,10 +6,7 @@
 #include "Presto/Events/ApplicationEvent.h"
 #include "Presto/Core/LayerStack.h"
 #include "Presto/ImGui/ImGuiLayer.h"
-
-#include "Presto/Renderer/Shader.h"
-#include "Presto/Renderer/Buffer.h"
-#include "Presto/Renderer/VertexArray.h"
+#include "Presto/Core/Timestep.h"
 
 #include <memory>
 
@@ -41,9 +38,7 @@ namespace Presto
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		LayerStack m_LayerStack;
-
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_VertexArray;
+		float m_LastFrameTime = 0.0f;
 	private:
 		static Application* s_Instance;
 	};

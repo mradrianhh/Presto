@@ -164,6 +164,8 @@
     <ClInclude Include="src\Presto\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Presto\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
+    <ClInclude Include="src\Presto\Renderer\Camera.h" />
+    <ClInclude Include="src\Presto\Core\Timestep.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
@@ -221,5 +223,6 @@
     <ClCompile Include="src\Presto\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Presto\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
+    <ClCompile Include="src\Presto\Renderer\Camera.cpp" />
   </ItemGroup>
 </Project>
