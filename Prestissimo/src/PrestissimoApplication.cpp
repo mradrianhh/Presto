@@ -25,7 +25,7 @@ namespace Presto
 				 0.0f,  0.5f, 0.0f
 			};
 
-			std::shared_ptr<VertexBuffer> vertexBuffer;
+			Presto::Ref<VertexBuffer> vertexBuffer;
 			vertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
 			vertexBuffer->SetLayout({
 				{ ShaderDataType::Float3, "a_Position" },
@@ -35,7 +35,7 @@ namespace Presto
 
 			uint32_t indices[3] = { 0, 1, 2 };
 
-			std::shared_ptr<IndexBuffer> indexBuffer;
+			Presto::Ref<IndexBuffer> indexBuffer;
 			indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 
 			m_VertexArray->SetIndexBuffer(indexBuffer);
@@ -137,8 +137,8 @@ namespace Presto
 			}
 		}
 	private:
-		std::shared_ptr<Presto::Shader> m_Shader;
-		std::shared_ptr<Presto::VertexArray> m_VertexArray;
+		Presto::Ref<Presto::Shader> m_Shader;
+		Presto::Ref<Presto::VertexArray> m_VertexArray;
 
 		Presto::OrthographicCamera m_Camera;
 		glm::vec3 m_CameraPosition;

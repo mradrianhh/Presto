@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #ifdef PRESTO_DEBUG
 #define PRESTO_ENABLE_ASSERTS
 #endif
@@ -15,3 +17,13 @@
 #define BIT(x) (1 << x)
 
 #define BIND_EVENT_FN(x, y) std::bind(&x, y, std::placeholders::_1)
+
+namespace Presto {
+
+	template<typename T>
+	using Scope = std::unique_ptr<T>;
+
+	template<typename T>
+	using Ref = std::shared_ptr<T>;
+
+}

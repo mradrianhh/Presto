@@ -35,7 +35,7 @@ namespace Presto
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 		bool m_Running = true;
-		std::unique_ptr<Window> m_Window;
+		Scope<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		LayerStack m_LayerStack;
 		float m_LastFrameTime = 0.0f;
