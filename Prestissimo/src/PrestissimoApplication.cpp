@@ -1,8 +1,12 @@
 #include <Presto.h>
-#include <Presto/Core/EntryPoint.h>
+
+#include "Platform/OpenGL/OpenGLShader.h"
 
 #include "imgui/imgui.h"
+
+
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 namespace Presto
 {
@@ -60,13 +64,15 @@ namespace Presto
 
 			in vec3 v_Position;
 
+			uniform vec3 u_Color;
+
 			void main()
 			{
-				color = vec4(v_Position * 0.5 + 0.5, 1.0);
+				color = vec4(u_Color, 1.0);
 			}
 		)";
 
-			m_Shader.reset(new Shader(vertexSrc, fragmentSrc));
+			m_Shader.reset(Presto::Shader::Create(vertexSrc, fragmentSrc));
 		}
 
 		void OnUpdate(Timestep ts) override
@@ -103,6 +109,9 @@ namespace Presto
 			glm::mat4 transform1 = glm::translate(glm::mat4(1.0f), m_Triangle1Position);
 			glm::mat4 transform2 = glm::translate(glm::mat4(1.0f), m_Triangle2Position);
 
+			std::dynamic_pointer_cast<OpenGLShader>(m_Shader)->Bind();
+			std::dynamic_pointer_cast<OpenGLShader>(m_Shader)->UploadUniformFloat3("u_Color", m_Color);
+
 			Presto::Renderer::Submit(m_Shader, m_VertexArray, transform1);
 
 			Presto::Renderer::Submit(m_Shader, m_VertexArray, transform2);
@@ -112,8 +121,8 @@ namespace Presto
 
 		virtual void OnImGuiRender() override
 		{
-			ImGui::Begin("Test");
-			ImGui::Text("Hello World");
+			ImGui::Begin("Settings");
+			ImGui::ColorEdit3("Square Color", glm::value_ptr(m_Color));
 			ImGui::End();
 		}
 
@@ -131,9 +140,6 @@ namespace Presto
 		std::shared_ptr<Presto::Shader> m_Shader;
 		std::shared_ptr<Presto::VertexArray> m_VertexArray;
 
-		std::shared_ptr<Presto::Shader> m_BlueShader;
-		std::shared_ptr<Presto::VertexArray> m_SquareVA;
-
 		Presto::OrthographicCamera m_Camera;
 		glm::vec3 m_CameraPosition;
 		float m_CameraMoveSpeed = 10.0f;
@@ -143,6 +149,8 @@ namespace Presto
 
 		glm::vec3 m_Triangle1Position;
 		glm::vec3 m_Triangle2Position;
+
+		glm::vec3 m_Color = { 0.2f, 0.3f, 0.8f };
 	};
 
 	class PrestissimoApplication : public Application
