@@ -15,6 +15,7 @@
 #include "Presto/Renderer/Buffer.h"
 #include "Presto/Renderer/Shader.h"
 #include "Presto/Renderer/VertexArray.h"
+#include "Presto/Renderer/Texture.h"
 
 // ---Entry Point---------------------
 #include "Presto/Core/EntryPoint.h"

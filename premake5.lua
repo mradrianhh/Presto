@@ -16,11 +16,16 @@ IncludeDir["GLFW"] = "Presto/vendor/GLFW/include"
 IncludeDir["GLAD"] = "Presto/vendor/GLAD/include"
 IncludeDir["ImGui"] = "Presto/vendor/imgui"
 IncludeDir["glm"] = "Presto/vendor/glm"
+IncludeDir["stb_image"] = "Presto/vendor/stb_image"
 
 
-include "Presto/vendor/GLFW"
-include "Presto/vendor/GLAD"
-include "Presto/vendor/imgui"
+
+group "Dependencies"
+	include "Presto/vendor/GLFW"
+	include "Presto/vendor/Glad"
+	include "Presto/vendor/imgui"
+
+group ""
 
 project "Presto"
     location "Presto"
@@ -44,7 +49,11 @@ project "Presto"
     files
     {
         "%{prj.name}/src/**.h",
-        "%{prj.name}/src/**.cpp"
+        "%{prj.name}/src/**.cpp",
+        "%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl",
     }
 
     includedirs
@@ -54,7 +63,8 @@ project "Presto"
         "%{IncludeDir.GLAD}",
         "%{IncludeDir.ImGui}",
         "%{IncludeDir.glm}",
-        "%{prj.name}/vendor/spdlog/include"
+        "%{prj.name}/vendor/spdlog/include",
+        "%{IncludeDir.stb_image}"
     }
 
     links

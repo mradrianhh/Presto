@@ -29,6 +29,8 @@ namespace Presto
 		m_Window = Scope<Window>(Window::Create(WindowProps()));
 		m_Window->SetEventCallback(BIND_EVENT_FN(Application::OnEvent, this));
 
+		Renderer::Init();
+
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
 

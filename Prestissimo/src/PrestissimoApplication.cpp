@@ -44,15 +44,16 @@ namespace Presto
 			#version 330 core
 			
 			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec2 a_TexCoord;
 
 			uniform mat4 u_ViewProjection;
 			uniform mat4 u_Transform;
 
-			out vec3 v_Position;
+			out vec2 v_TexCoord;
 
 			void main()
 			{
-				v_Position = a_Position;
+				v_TexCoord = a_TexCoord;
 				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
 			}
 		)";
@@ -62,17 +63,18 @@ namespace Presto
 			
 			layout(location = 0) out vec4 color;
 
-			in vec3 v_Position;
-
-			uniform vec3 u_Color;
+			in vec2 v_TexCoord;
+			
+			uniform sampler2D u_Texture;
 
 			void main()
 			{
-				color = vec4(u_Color, 1.0);
+				color = texture(u_Texture, v_TexCoord);
 			}
 		)";
 
 			m_Shader.reset(Presto::Shader::Create(vertexSrc, fragmentSrc));
+			m_Texture = Presto::Texture2D::Create("assets/textures/Checkerboard.png");
 		}
 
 		void OnUpdate(Timestep ts) override
@@ -106,12 +108,14 @@ namespace Presto
 
 			Presto::Renderer::BeginScene(m_Camera);
 
+
 			glm::mat4 transform1 = glm::translate(glm::mat4(1.0f), m_Triangle1Position);
 			glm::mat4 transform2 = glm::translate(glm::mat4(1.0f), m_Triangle2Position);
 
 			std::dynamic_pointer_cast<OpenGLShader>(m_Shader)->Bind();
 			std::dynamic_pointer_cast<OpenGLShader>(m_Shader)->UploadUniformFloat3("u_Color", m_Color);
 
+			m_Texture->Bind();
 			Presto::Renderer::Submit(m_Shader, m_VertexArray, transform1);
 
 			Presto::Renderer::Submit(m_Shader, m_VertexArray, transform2);
@@ -139,6 +143,7 @@ namespace Presto
 	private:
 		Presto::Ref<Presto::Shader> m_Shader;
 		Presto::Ref<Presto::VertexArray> m_VertexArray;
+		Presto::Ref<Presto::Texture2D> m_Texture;
 
 		Presto::OrthographicCamera m_Camera;
 		glm::vec3 m_CameraPosition;
