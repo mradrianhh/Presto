@@ -16,6 +16,7 @@
 #include "Presto/Renderer/Shader.h"
 #include "Presto/Renderer/VertexArray.h"
 #include "Presto/Renderer/Texture.h"
+#include "Presto/Renderer/OrthographicCameraController.h"
 
 // ---Entry Point---------------------
 #include "Presto/Core/EntryPoint.h"

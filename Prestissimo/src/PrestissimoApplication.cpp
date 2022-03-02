@@ -15,7 +15,7 @@ namespace Presto
 	{
 	public:
 		ExampleLayer()
-			: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f), m_Triangle1Position(0.0f), m_Triangle2Position(0.0f)
+			: Layer("Example"), m_CameraController(1280.0f / 720.0f)
 		{
 			m_VertexArray.reset(VertexArray::Create());
 
@@ -52,83 +52,40 @@ namespace Presto
 
 		void OnUpdate(Timestep ts) override
 		{
-			PRESTO_TRACE("{0} s, ({1} ms)", ts.GetSeconds(), ts.GetMilliseconds());
-
-			if (Presto::Input::IsKeyPressed(PRESTO_KEY_LEFT))
-				m_Triangle1Position.x -= m_CameraMoveSpeed * ts;
-			else if (Presto::Input::IsKeyPressed(PRESTO_KEY_RIGHT))
-				m_Triangle1Position.x += m_CameraMoveSpeed * ts;
-
-			if (Presto::Input::IsKeyPressed(PRESTO_KEY_UP))
-				m_Triangle1Position.y += m_CameraMoveSpeed * ts;
-			else if (Presto::Input::IsKeyPressed(PRESTO_KEY_DOWN))
-				m_Triangle1Position.y -= m_CameraMoveSpeed * ts;
-
-			if (Presto::Input::IsKeyPressed(PRESTO_KEY_A))
-				m_Triangle2Position.x -= m_CameraMoveSpeed * ts;
-			else if (Presto::Input::IsKeyPressed(PRESTO_KEY_D))
-				m_Triangle2Position.x += m_CameraMoveSpeed * ts;
-			if (Presto::Input::IsKeyPressed(PRESTO_KEY_W))
-				m_Triangle2Position.y += m_CameraMoveSpeed * ts;
-			else if (Presto::Input::IsKeyPressed(PRESTO_KEY_S))
-				m_Triangle2Position.y -= m_CameraMoveSpeed * ts;
+			m_CameraController.OnUpdate(ts);
 
 			Presto::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 			Presto::RenderCommand::Clear();
 
-			m_Camera.SetPosition(m_CameraPosition);
-			m_Camera.SetRotation(m_CameraRotation);
-
-			Presto::Renderer::BeginScene(m_Camera);
+			Presto::Renderer::BeginScene(m_CameraController.GetCamera());
 
 			auto shader = m_ShaderLibrary.Get("Texture");
 
-			glm::mat4 transform1 = glm::translate(glm::mat4(1.0f), m_Triangle1Position);
-			glm::mat4 transform2 = glm::translate(glm::mat4(1.0f), m_Triangle2Position);
+			glm::mat4 transform = glm::mat4(1.0f);
 
 			std::dynamic_pointer_cast<OpenGLShader>(shader)->Bind();
 
 			m_Texture->Bind();
-			Presto::Renderer::Submit(shader, m_VertexArray, transform1);
-
-			Presto::Renderer::Submit(shader, m_VertexArray, transform2);
+			Presto::Renderer::Submit(shader, m_VertexArray, transform);
 
 			Presto::Renderer::EndScene();
 		}
 
 		virtual void OnImGuiRender() override
 		{
-			ImGui::Begin("Settings");
-			ImGui::ColorEdit3("Square Color", glm::value_ptr(m_Color));
-			ImGui::End();
+
 		}
 
 		void OnEvent(IEvent& event) override
 		{
-			if (event.GetEventType() == EventType::KeyPressed)
-			{
-				KeyPressedEvent& e = (KeyPressedEvent&)event;
-				if (e.GetKeyCode() == PRESTO_KEY_TAB)
-					PRESTO_TRACE("Tab key is pressed (event)!");
-				PRESTO_TRACE("{0}", (char)e.GetKeyCode());
-			}
+			m_CameraController.OnEvent(event);
 		}
 	private:
 		Presto::ShaderLibrary m_ShaderLibrary;
 		Presto::Ref<Presto::VertexArray> m_VertexArray;
 		Presto::Ref<Presto::Texture2D> m_Texture;
 
-		Presto::OrthographicCamera m_Camera;
-		glm::vec3 m_CameraPosition;
-		float m_CameraMoveSpeed = 10.0f;
-
-		float m_CameraRotation = 0.0f;
-		float m_CameraRotationSpeed = 180.0f;
-
-		glm::vec3 m_Triangle1Position;
-		glm::vec3 m_Triangle2Position;
-
-		glm::vec3 m_Color = { 0.2f, 0.3f, 0.8f };
+		Presto::OrthographicCameraController m_CameraController;
 	};
 
 	class PrestissimoApplication : public Application
