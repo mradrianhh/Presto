@@ -19,62 +19,35 @@ namespace Presto
 		{
 			m_VertexArray.reset(VertexArray::Create());
 
-			float vertices[3 * 3] = {
-				-0.5f, -0.5f, 0.0f,
-				 0.5f, -0.5f, 0.0f,
-				 0.0f,  0.5f, 0.0f
+			float vertices[5 * 4] = {
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 			};
 
 			Presto::Ref<VertexBuffer> vertexBuffer;
 			vertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
 			vertexBuffer->SetLayout({
 				{ ShaderDataType::Float3, "a_Position" },
+				{ ShaderDataType::Float2, "a_TexCoord" },
 				});
 
 			m_VertexArray->AddVertexBuffer(vertexBuffer);
 
-			uint32_t indices[3] = { 0, 1, 2 };
+			uint32_t indices[6] = { 0, 1, 2, 2, 3, 0 };
 
 			Presto::Ref<IndexBuffer> indexBuffer;
 			indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 
 			m_VertexArray->SetIndexBuffer(indexBuffer);
 
-			std::string vertexSrc = R"(
-			#version 330 core
-			
-			layout(location = 0) in vec3 a_Position;
-			layout(location = 1) in vec2 a_TexCoord;
+			auto shader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Transform;
+			m_Texture = Presto::Texture2D::Create("assets/textures/presto_red.png");
 
-			out vec2 v_TexCoord;
-
-			void main()
-			{
-				v_TexCoord = a_TexCoord;
-				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
-			}
-		)";
-
-			std::string fragmentSrc = R"(
-			#version 330 core
-			
-			layout(location = 0) out vec4 color;
-
-			in vec2 v_TexCoord;
-			
-			uniform sampler2D u_Texture;
-
-			void main()
-			{
-				color = texture(u_Texture, v_TexCoord);
-			}
-		)";
-
-			m_Shader.reset(Presto::Shader::Create(vertexSrc, fragmentSrc));
-			m_Texture = Presto::Texture2D::Create("assets/textures/Checkerboard.png");
+			std::dynamic_pointer_cast<Presto::OpenGLShader>(shader)->Bind();
+			std::dynamic_pointer_cast<Presto::OpenGLShader>(shader)->UploadUniformInt("u_Texture", 0);
 		}
 
 		void OnUpdate(Timestep ts) override
@@ -108,17 +81,17 @@ namespace Presto
 
 			Presto::Renderer::BeginScene(m_Camera);
 
+			auto shader = m_ShaderLibrary.Get("Texture");
 
 			glm::mat4 transform1 = glm::translate(glm::mat4(1.0f), m_Triangle1Position);
 			glm::mat4 transform2 = glm::translate(glm::mat4(1.0f), m_Triangle2Position);
 
-			std::dynamic_pointer_cast<OpenGLShader>(m_Shader)->Bind();
-			std::dynamic_pointer_cast<OpenGLShader>(m_Shader)->UploadUniformFloat3("u_Color", m_Color);
+			std::dynamic_pointer_cast<OpenGLShader>(shader)->Bind();
 
 			m_Texture->Bind();
-			Presto::Renderer::Submit(m_Shader, m_VertexArray, transform1);
+			Presto::Renderer::Submit(shader, m_VertexArray, transform1);
 
-			Presto::Renderer::Submit(m_Shader, m_VertexArray, transform2);
+			Presto::Renderer::Submit(shader, m_VertexArray, transform2);
 
 			Presto::Renderer::EndScene();
 		}
@@ -141,7 +114,7 @@ namespace Presto
 			}
 		}
 	private:
-		Presto::Ref<Presto::Shader> m_Shader;
+		Presto::ShaderLibrary m_ShaderLibrary;
 		Presto::Ref<Presto::VertexArray> m_VertexArray;
 		Presto::Ref<Presto::Texture2D> m_Texture;
 
