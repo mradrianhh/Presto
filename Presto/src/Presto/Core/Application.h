@@ -34,6 +34,9 @@ namespace Presto
 
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
+		bool OnWindowResize(WindowResizeEvent& e);
+	private:
+		bool m_Minimized = false;
 		bool m_Running = true;
 		Scope<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
