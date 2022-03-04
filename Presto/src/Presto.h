@@ -11,6 +11,7 @@
 #include "Presto/ImGui/ImGuiLayer.h"
 
 #include "Presto/Renderer/Renderer.h"
+#include "Presto/Renderer/Renderer2D.h"
 #include "Presto/Renderer/RenderCommand.h"
 #include "Presto/Renderer/Buffer.h"
 #include "Presto/Renderer/Shader.h"

@@ -1477,6 +1477,7 @@
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
     <ClInclude Include="src\Presto\Renderer\OrthographicCameraController.h" />
+    <ClInclude Include="src\Presto\Renderer\Renderer2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1570,5 +1571,6 @@
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
     <ClCompile Include="src\Presto\Renderer\OrthographicCameraController.cpp" />
+    <ClCompile Include="src\Presto\Renderer\Renderer2D.cpp" />
   </ItemGroup>
 </Project>
