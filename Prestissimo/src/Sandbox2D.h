@@ -19,6 +19,7 @@ private:
 
 	Presto::Ref<Presto::VertexArray> m_SquareVA;
 	Presto::Ref<Presto::Shader> m_FlatColorShader;
+	Presto::Ref<Presto::Texture2D> m_CheckerboardTexture;
 
 	glm::vec4 m_SquareColor = {0.2f, 0.3f, 0.8f, 1.0f};
 };
