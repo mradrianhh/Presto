@@ -16,7 +16,7 @@ namespace Presto {
 
 		virtual void OnAttach() override;
 		virtual void OnDetach() override;
-		virtual void OnEvent(IEvent& e) override;
+		void OnEvent(IEvent& e) override;
 
 		void Begin();
 		void End();

@@ -21,5 +21,15 @@ private:
 	Presto::Ref<Presto::Shader> m_FlatColorShader;
 	Presto::Ref<Presto::Texture2D> m_CheckerboardTexture;
 
+	struct ProfileResult
+	{
+		const char* Name;
+		float Time;
+	};
+
+	std::vector<ProfileResult> m_ProfileResults;
+
+	float m_WorstTime;
+
 	glm::vec4 m_SquareColor = {0.2f, 0.3f, 0.8f, 1.0f};
 };
