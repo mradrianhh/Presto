@@ -10,6 +10,8 @@
 
 #include "Presto/ImGui/ImGuiLayer.h"
 
+#include "Presto/Debug/Instrumentor.h"
+
 #include "Presto/Renderer/Renderer.h"
 #include "Presto/Renderer/Renderer2D.h"
 #include "Presto/Renderer/RenderCommand.h"

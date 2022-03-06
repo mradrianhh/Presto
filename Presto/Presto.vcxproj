@@ -149,6 +149,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Presto\Debug\Instrumentor.h" />
     <ClInclude Include="src\Presto\Renderer\Renderer2D.h" />
     <ClInclude Include="src\Presto\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />

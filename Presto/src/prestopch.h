@@ -15,6 +15,8 @@
 
 #include "Presto/Core/Log.h"
 
+#include "Presto/Debug/Instrumentor.h"
+
 #ifdef PRESTO_PLATFORM_WINDOWS
 #include <Windows.h>
 #endif
