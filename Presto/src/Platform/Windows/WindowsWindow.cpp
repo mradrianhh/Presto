@@ -20,21 +20,25 @@ namespace Presto
 
 	WindowsWindow::WindowsWindow(const WindowProps& props)
 	{
+		PRESTO_PROFILE_FUNCTION();
 		Init(props);
 	}
 
 	WindowsWindow::~WindowsWindow()
 	{
+		PRESTO_PROFILE_FUNCTION();
 		Shutdown();
 	}
 
 	Window* Window::Create(const WindowProps& props)
 	{
+		PRESTO_PROFILE_FUNCTION();
 		return new WindowsWindow(props);
 	}
 
 	void WindowsWindow::Init(const WindowProps& props)
 	{
+		PRESTO_PROFILE_FUNCTION();
 		m_Data.Title = props.Title;
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
@@ -136,17 +140,20 @@ namespace Presto
 
 	void WindowsWindow::Shutdown()
 	{
+		PRESTO_PROFILE_FUNCTION();
 		glfwDestroyWindow(m_Window);
 	}
 
 	void WindowsWindow::OnUpdate()
 	{
+		PRESTO_PROFILE_FUNCTION();
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)
 	{
+		PRESTO_PROFILE_FUNCTION();
 		if (enabled)
 			glfwSwapInterval(1);
 		else

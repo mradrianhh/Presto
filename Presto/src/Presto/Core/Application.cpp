@@ -23,6 +23,8 @@ namespace Presto
 
 	Application::Application()
 	{
+		PRESTO_PROFILE_FUNCTION();
+
 		PRESTO_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 		
@@ -33,19 +35,17 @@ namespace Presto
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
-
-		ComponentFactory::Instance()->AddPrototype<Valve>();
-		IComponent* valve = ComponentFactory::Instance()->CreateComponent<Valve>("V_01");
-		std::cout << valve->GetIdentifier() << std::endl;
 	}
 
 	Application::~Application()
 	{
-
+		PRESTO_PROFILE_FUNCTION();
 	}
 
 	void Application::OnEvent(IEvent& e)
 	{
+		PRESTO_PROFILE_FUNCTION();
+
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::OnWindowClose, this));
 		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(Application::OnWindowResize));
@@ -60,32 +60,38 @@ namespace Presto
 
 	void Application::PushLayer(Layer* layer)
 	{
+		PRESTO_PROFILE_FUNCTION();
 		m_LayerStack.PushLayer(layer);
 		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* overlay)
 	{
+		PRESTO_PROFILE_FUNCTION();
 		m_LayerStack.PushOverlay(overlay);
 		overlay->OnAttach();
 	}
 
 	void Application::Run()
 	{
+		PRESTO_PROFILE_FUNCTION();
 		while (m_Running)
 		{
+			PRESTO_PROFILE_SCOPE("Run Loop");
 			float time = (float)glfwGetTime();
 			Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
 			if (!m_Minimized)
 			{
+				PRESTO_PROFILE_SCOPE("Layerstack OnUpdate");
 				for (Layer* layer : m_LayerStack)
 					layer->OnUpdate(timestep);
 			}
 
 			m_ImGuiLayer->Begin();
 			{
+				PRESTO_PROFILE_SCOPE("Layerstack OnImGuiRender");
 				for (Layer* layer : m_LayerStack)
 					layer->OnImGuiRender();
 			}
@@ -97,12 +103,14 @@ namespace Presto
 
 	bool Application::OnWindowClose(WindowCloseEvent& e)
 	{
+		PRESTO_PROFILE_FUNCTION();
 		m_Running = false;
 		return true;
 	}
 
 	bool Application::OnWindowResize(WindowResizeEvent& e)
 	{
+		PRESTO_PROFILE_FUNCTION();
 		if (e.GetWidth() == 0 || e.GetHeight() == 0)
 		{
 			m_Minimized = true;
