@@ -31,6 +31,7 @@ void Sandbox2D::OnUpdate(Presto::Timestep ts)
 		m_CameraController.OnUpdate(ts);
 	}
 	
+	Presto::Renderer2D::ResetStats();
 	{
 		PRESTO_PROFILE_SCOPE("Renderer prep");
 
@@ -53,6 +54,15 @@ void Sandbox2D::OnUpdate(Presto::Timestep ts)
 void Sandbox2D::OnImGuiRender()
 {
 	PRESTO_PROFILE_FUNCTION();
+
+	ImGui::Begin("Statistics");
+	auto stats = Presto::Renderer2D::GetStats();
+	ImGui::Text("Renderer2D Stats:");
+	ImGui::Text("Draw Calls: %d", stats.DrawCalls);
+	ImGui::Text("Quads: %d", stats.QuadCount);
+	ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
+	ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
+	ImGui::End();
 }
 
 void Sandbox2D::OnEvent(Presto::IEvent& e)
